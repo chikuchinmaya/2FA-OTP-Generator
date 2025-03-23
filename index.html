@@ -3,16 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OTP Generator</title>
+  <title>OTP Generator By Chinmaya!</title>
+  <style>
+    /* Reset styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Main container */
+    .container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    #otps {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    #otps p {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      border: 1px solid #ddd;
+    }
+  </style>
 </head>
 <body>
-  <h1>2FA OTP Generator</h1>
+  <div class="container">
+    <h1>2FA OTP Generator By Chinmaya!</h1>
 
-  <input type="text" id="secretKey" placeholder="Enter your secret key">
-  <button onclick="addSecret()">Add Secret</button>
+    <input type="text" id="secretKey" placeholder="Enter your secret key">
+    <button onclick="addSecret()">Add Secret</button>
 
-  <h2>Generated OTPs:</h2>
-  <div id="otps"></div>
+    <h2>Generated OTPs:</h2>
+    <div id="otps"></div>
+  </div>
 
   <script>
     const backendURL = 'http://127.0.0.1:5000';
@@ -45,7 +120,7 @@
       const otpDiv = document.getElementById('otps');
       otpDiv.innerHTML = '';
       data.forEach(({ secretKey, otp }) => {
-        otpDiv.innerHTML += `<p>Key: ${secretKey} - OTP: ${otp}</p>`;
+        otpDiv.innerHTML += `<p><strong>Key:</strong> ${secretKey} - <strong>OTP:</strong> ${otp}</p>`;
       });
     }
 
