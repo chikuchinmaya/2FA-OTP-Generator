@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Generator</title>
+</head>
+<body>
+  <h1>2FA OTP Generator</h1>
+
+  <input type="text" id="secretKey" placeholder="Enter your secret key">
+  <button onclick="addSecret()">Add Secret</button>
+
+  <h2>Generated OTPs:</h2>
+  <div id="otps"></div>
+
+  <script>
+    const backendURL = 'http://127.0.0.1:5000';
+
+    async function addSecret() {
+      const secretKey = document.getElementById('secretKey').value;
+      if (!secretKey) {
+        alert('Please enter a secret key!');
+        return;
+      }
+
+      const response = await fetch(`${backendURL}/add-secret`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secretKey }),
+      });
+
+      if (response.ok) {
+        alert('Secret key added successfully!');
+        fetchOTPs(); // Update OTPs list
+      } else {
+        alert('Error adding secret key!');
+      }
+    }
+
+    async function fetchOTPs() {
+      const response = await fetch(`${backendURL}/get-otps`);
+      const data = await response.json();
+
+      const otpDiv = document.getElementById('otps');
+      otpDiv.innerHTML = '';
+      data.forEach(({ secretKey, otp }) => {
+        otpDiv.innerHTML += `<p>Key: ${secretKey} - OTP: ${otp}</p>`;
+      });
+    }
+
+    // Automatically refresh OTPs every 30 seconds
+    setInterval(fetchOTPs, 30000);
+  </script>
+</body>
+</html>
