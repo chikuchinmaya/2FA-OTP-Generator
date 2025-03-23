@@ -36,8 +36,8 @@ This project is a Two-Factor Authentication (2FA) OTP generator application. It 
 
 ### **2. Clone the Repository**
 ```bash
-git clone 
-cd otp-generator
+git clone https://github.com/chikuchinmaya/2FA-OTP-Generator.git
+cd 2fa-otp-generator
 
 3. Set Up the MySQL Database
 Log in to your MySQL server:
